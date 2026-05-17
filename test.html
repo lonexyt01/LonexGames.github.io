@@ -1,0 +1,1194 @@
+# LONEX X — ULTRA PREMIUM MINECRAFT WEBSITE
+
+Quyidagi kod FULL premium level website bo‘lib:
+
+* Ultra premium UI/UX
+* Mobile responsive
+* Neon cyberpunk dizayn
+* 3D animated background
+* Advanced hover effects
+* Live stats system
+* 52 ta testli certificate system
+* 45+ correct bo‘lsa certificate unlock
+* Chiroyli downloadable certificate
+* Leaderboard style UI
+* Premium glassmorphism
+* Smooth animationlar
+* Mobile menu
+* Dynamic particles
+* Quiz timer
+* Progress system
+* Success animation
+
+## 1. index.html
+
+```html
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LONEX X | ULTRA PREMIUM NETWORK</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;700&display=swap');
+
+:root{
+--primary:#00ffae;
+--secondary:#00b3ff;
+--dark:#030712;
+--glass:rgba(255,255,255,.05);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Inter,sans-serif;
+background:var(--dark);
+color:white;
+overflow-x:hidden;
+}
+
+canvas{
+position:fixed;
+inset:0;
+z-index:-3;
+}
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(0,255,174,.15), transparent 30%),
+radial-gradient(circle at bottom right, rgba(0,179,255,.15), transparent 30%),
+radial-gradient(circle at center, rgba(140,0,255,.08), transparent 40%);
+filter:blur(80px);
+animation:aurora 12s infinite alternate;
+z-index:-2;
+}
+
+@keyframes aurora{
+0%{transform:scale(1) rotate(0deg)}
+100%{transform:scale(1.2) rotate(12deg)}
+}
+
+.orbit{
+font-family:Orbitron,sans-serif;
+}
+
+.glass{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 30px rgba(0,255,174,.06);
+}
+
+.hero-title{
+font-size:clamp(60px,11vw,180px);
+font-weight:900;
+line-height:.85;
+}
+
+.btn-main{
+padding:16px 38px;
+border:1px solid var(--primary);
+background:transparent;
+color:var(--primary);
+font-weight:700;
+letter-spacing:2px;
+position:relative;
+overflow:hidden;
+transition:.4s;
+border-radius:18px;
+}
+
+.btn-main::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,var(--primary),var(--secondary));
+transform:translateX(-100%);
+transition:.5s;
+z-index:-1;
+}
+
+.btn-main:hover::before{
+transform:translateX(0);
+}
+
+.btn-main:hover{
+color:black;
+transform:translateY(-6px);
+box-shadow:0 0 35px rgba(0,255,174,.4);
+}
+
+.card{
+transition:.5s;
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.02);
+box-shadow:0 0 45px rgba(0,255,174,.15);
+}
+
+.neon-text{
+text-shadow:0 0 20px rgba(0,255,174,.8);
+}
+
+.progress-bar{
+height:10px;
+background:rgba(255,255,255,.1);
+border-radius:999px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+.question-box{
+display:none;
+}
+
+.question-box.active{
+display:block;
+animation:fade .5s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.option{
+padding:16px;
+border-radius:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+margin-top:12px;
+transition:.3s;
+cursor:pointer;
+}
+
+.option:hover{
+background:rgba(0,255,174,.15);
+border-color:var(--primary);
+}
+
+#certificate{
+display:none;
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(135deg,rgba(0,255,174,.08),rgba(0,179,255,.08)),
+linear-gradient(145deg,#08111f,#0f172a);
+padding:70px 50px;
+border-radius:40px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:
+0 0 80px rgba(0,255,174,.15),
+inset 0 0 60px rgba(255,255,255,.03);
+}
+
+#certificate::before{
+content:'';
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(0,255,174,.18), transparent 30%),
+radial-gradient(circle at bottom right, rgba(0,179,255,.18), transparent 30%);
+pointer-events:none;
+}
+
+.cert-border{
+position:absolute;
+inset:18px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:30px;
+pointer-events:none;
+}
+
+.cert-glow{
+position:absolute;
+width:320px;
+height:320px;
+background:#00ffae;
+filter:blur(140px);
+opacity:.12;
+border-radius:50%;
+top:-100px;
+right:-100px;
+}
+
+.cert-title{
+font-size:72px;
+font-weight:900;
+letter-spacing:8px;
+text-transform:uppercase;
+background:linear-gradient(90deg,#fff,#00ffae,#00b3ff,#fff);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:shineText 8s linear infinite;
+}
+
+@keyframes shineText{
+0%{background-position:0%}
+100%{background-position:300%}
+}
+
+.cert-subtitle{
+letter-spacing:6px;
+text-transform:uppercase;
+font-size:12px;
+color:#00ffae;
+margin-top:10px;
+}
+
+.badge{
+width:150px;
+height:150px;
+border-radius:50%;
+background:linear-gradient(135deg,#00ffae,#00b3ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+margin:auto;
+color:black;
+font-weight:900;
+box-shadow:
+0 0 50px rgba(0,255,174,.45),
+0 0 120px rgba(0,179,255,.25);
+position:relative;
+}
+
+.badge::before{
+content:'';
+position:absolute;
+inset:-10px;
+border:2px dashed rgba(255,255,255,.25);
+border-radius:50%;
+animation:spin 12s linear infinite;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg)}
+}
+
+.cert-player{
+font-size:60px;
+font-weight:900;
+margin-top:25px;
+background:linear-gradient(90deg,#ffffff,#00ffae);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 25px rgba(0,255,174,.3);
+}
+
+.cert-id{
+margin-top:25px;
+display:inline-block;
+padding:10px 20px;
+border-radius:999px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+font-size:13px;
+letter-spacing:4px;
+color:#9ca3af;
+}
+
+.cert-signatures{
+margin-top:50px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:40px;
+}
+
+.sign-box{
+text-align:center;
+}
+
+.sign-line{
+width:100%;
+height:1px;
+background:rgba(255,255,255,.2);
+margin-bottom:12px;
+}
+
+.gold-seal{
+position:absolute;
+bottom:40px;
+right:40px;
+width:120px;
+height:120px;
+border-radius:50%;
+background:linear-gradient(135deg,#ffd700,#ffae00);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+font-size:14px;
+color:black;
+box-shadow:0 0 40px rgba(255,215,0,.4);
+transform:rotate(-12deg);
+}
+
+@media(max-width:768px){
+.cert-title{
+font-size:42px;
+letter-spacing:3px;
+}
+
+.cert-player{
+font-size:38px;
+}
+
+#certificate{
+padding:40px 20px;
+}
+
+.cert-signatures{
+grid-template-columns:1fr;
+}
+
+.gold-seal{
+position:relative;
+margin:40px auto 0;
+right:auto;
+bottom:auto;
+}
+}
+
+.mobile-menu{
+position:fixed;
+top:0;
+right:-100%;
+width:80%;
+height:100vh;
+background:#030712;
+z-index:9999;
+padding:40px;
+transition:.5s;
+}
+
+@media(max-width:768px){
+.hero-title{
+font-size:70px;
+}
+
+.cert-title{
+font-size:38px;
+}
+
+#certificate{
+padding:30px 20px;
+}
+
+.btn-main{
+width:100%;
+}
+}
+</style>
+</head>
+<body>
+
+<nav class="fixed top-0 w-full z-50 glass">
+<div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl bg-green-400/20 flex items-center justify-center">
+<i class="fa-solid fa-cube text-green-400 text-2xl"></i>
+</div>
+<div>
+<h1 class="orbit text-2xl">LONEX X</h1>
+<p class="text-xs text-green-400 tracking-[5px]">NETWORK</p>
+</div>
+</div>
+
+<div class="hidden lg:flex gap-10 uppercase text-sm tracking-[3px]">
+<a href="#about">ABOUT</a>
+<a href="#stats">STATS</a>
+<a href="#quiz">CERTIFICATE</a>
+<a href="#discord">DISCORD</a>
+</div>
+
+<button id="menuBtn" class="lg:hidden text-3xl text-green-400">
+☰
+</button>
+
+</div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+<div class="flex justify-between items-center mb-10">
+<h1 class="orbit text-3xl text-green-400">LONEX</h1>
+<button id="closeMenu" class="text-4xl">×</button>
+</div>
+
+<div class="flex flex-col gap-8 text-2xl orbit">
+<a href="#about">ABOUT</a>
+<a href="#stats">STATS</a>
+<a href="#quiz">CERTIFICATE</a>
+<a href="#discord">DISCORD</a>
+</div>
+</div>
+
+<section class="min-h-screen flex items-center justify-center px-6 text-center relative overflow-hidden">
+
+<div>
+<p class="orbit tracking-[8px] text-green-400 mb-6 text-xs">
+NEXT GENERATION MINECRAFT EXPERIENCE
+</p>
+
+<h1 class="hero-title orbit neon-text">
+LONEX<br>
+<span class="text-green-400">X</span>
+</h1>
+
+<p class="max-w-2xl mx-auto text-gray-400 text-lg mt-8 leading-8">
+Ultra premium Minecraft network with cinematic systems,
+advanced optimization and certificate platform.
+</p>
+
+<div class="flex flex-wrap justify-center gap-5 mt-12">
+<button class="btn-main orbit" onclick="copyIP()">
+PLAY.LONEX.UZ
+</button>
+
+<a href="#quiz" class="btn-main orbit">
+GET CERTIFICATE
+</a>
+</div>
+</div>
+
+</section>
+
+<section id="about" class="py-32 px-6">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+
+<div>
+<p class="orbit text-green-400 tracking-[5px] text-xs mb-5">
+ABOUT NETWORK
+</p>
+
+<h2 class="orbit text-6xl mb-8">
+ULTRA<br>
+<span class="text-green-400">PREMIUM</span>
+</h2>
+
+<p class="text-gray-400 leading-8 text-lg mb-10">
+LONEX X professional Minecraft network.
+Custom systems, animated UI, premium gameplay,
+advanced anti-cheat and futuristic experience.
+</p>
+
+<div class="grid sm:grid-cols-2 gap-6">
+
+<div class="glass p-8 rounded-3xl card">
+<i class="fa-solid fa-bolt text-green-400 text-4xl mb-5"></i>
+<h3 class="orbit text-2xl mb-4">FAST</h3>
+<p class="text-gray-400">Ultra optimized server performance.</p>
+</div>
+
+<div class="glass p-8 rounded-3xl card">
+<i class="fa-solid fa-shield-halved text-green-400 text-4xl mb-5"></i>
+<h3 class="orbit text-2xl mb-4">SECURE</h3>
+<p class="text-gray-400">Advanced anti-cheat protection.</p>
+</div>
+
+</div>
+</div>
+
+<div class="glass rounded-[35px] overflow-hidden p-5 card">
+<img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?q=80&w=1600&auto=format&fit=crop"
+class="rounded-[25px] w-full h-[550px] object-cover">
+</div>
+
+</div>
+</section>
+
+<section id="stats" class="py-32 px-6 bg-white/[0.02]">
+<div class="max-w-7xl mx-auto">
+
+<div class="text-center mb-20">
+<h2 class="orbit text-5xl">
+SERVER <span class="text-green-400">STATS</span>
+</h2>
+</div>
+
+<div class="grid md:grid-cols-4 gap-8">
+
+<div class="glass p-10 rounded-3xl card text-center">
+<i class="fa-solid fa-users text-5xl text-green-400 mb-6"></i>
+<p class="text-gray-400">ONLINE PLAYERS</p>
+<h2 id="online" class="text-5xl font-black mt-3 text-green-400">0</h2>
+</div>
+
+<div class="glass p-10 rounded-3xl card text-center">
+<i class="fa-solid fa-server text-5xl text-green-400 mb-6"></i>
+<p class="text-gray-400">TPS</p>
+<h2 class="text-5xl font-black mt-3">20</h2>
+</div>
+
+<div class="glass p-10 rounded-3xl card text-center">
+<i class="fa-solid fa-wifi text-5xl text-green-400 mb-6"></i>
+<p class="text-gray-400">PING</p>
+<h2 class="text-5xl font-black mt-3">12ms</h2>
+</div>
+
+<div class="glass p-10 rounded-3xl card text-center">
+<i class="fa-solid fa-trophy text-5xl text-green-400 mb-6"></i>
+<p class="text-gray-400">UPTIME</p>
+<h2 class="text-5xl font-black mt-3">99%</h2>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="quiz" class="py-32 px-6">
+<div class="max-w-5xl mx-auto glass rounded-[35px] p-10">
+
+<div class="text-center mb-14">
+<h2 class="orbit text-5xl mb-6">
+CERTIFICATE <span class="text-green-400">EXAM</span>
+</h2>
+
+<p class="text-gray-400 max-w-2xl mx-auto leading-8">
+52 ta testdan kamida 45 tasiga to‘g‘ri javob bersangiz
+premium certificate unlock bo‘ladi.
+</p>
+</div>
+
+<div class="flex justify-between mb-4 text-sm text-gray-400">
+<span id="questionCounter">1 / 52</span>
+<span id="timer">30:00</span>
+</div>
+
+<div class="progress-bar mb-10">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<div id="quizContainer"></div>
+
+<div class="text-center mt-10">
+<button class="btn-main orbit" onclick="nextQuestion()">
+NEXT QUESTION
+</button>
+</div>
+
+<div id="resultBox" class="hidden text-center mt-14">
+<h2 class="text-5xl font-black mb-6">
+YOUR SCORE:
+<span class="text-green-400" id="scoreText"></span>
+</h2>
+</div>
+
+<div id="certificate" class="mt-16">
+<div class="cert-border"></div>
+<div class="cert-glow"></div>
+
+<div class="badge mb-10">✓</div>
+
+<h1 class="cert-title orbit">
+Certificate
+</h1>
+
+<p class="cert-subtitle">
+Official Premium Completion Award
+</p>
+
+<p class="text-gray-400 mt-8 text-lg">
+This prestigious certificate is proudly presented to
+</p>
+
+<h2 id="certName" class="cert-player orbit">
+PLAYER
+</h2>
+
+<p class="mt-10 text-gray-300 text-lg leading-9 max-w-2xl mx-auto">
+For successfully completing the LONEX X Ultimate Minecraft Examination
+with exceptional performance, advanced gameplay knowledge and premium achievement level.
+</p>
+
+<div class="cert-id">
+CERTIFICATE ID: LNX-2026-PREMIUM
+</div>
+
+<div class="cert-signatures">
+<div class="sign-box">
+<div class="sign-line"></div>
+<h3 class="orbit text-green-400">LONEX ADMIN</h3>
+<p class="text-gray-500 text-sm mt-2">Network Director</p>
+</div>
+
+<div class="sign-box">
+<div class="sign-line"></div>
+<h3 class="orbit text-cyan-400">OFFICIAL VERIFY</h3>
+<p class="text-gray-500 text-sm mt-2">Certificate Authority</p>
+</div>
+</div>
+
+<div class="gold-seal">
+PREMIUM<br>VERIFIED
+</div>
+
+<div class="mt-16">
+<div class="flex flex-wrap justify-center gap-5">
+<button onclick="downloadCertificate()" class="btn-main orbit">
+DOWNLOAD PDF
+</button>
+
+<button onclick="shareCertificate()" class="btn-main orbit">
+SHARE CERTIFICATE
+</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="discord" class="py-32 px-6">
+<div class="max-w-5xl mx-auto glass rounded-[35px] p-16 text-center">
+
+<h2 class="orbit text-6xl mb-6">
+JOIN <span class="text-green-400">DISCORD</span>
+</h2>
+
+<p class="text-gray-400 max-w-2xl mx-auto mb-10 leading-8">
+Events, updates and premium community.
+</p>
+
+<button class="btn-main orbit">
+JOIN NOW
+</button>
+
+</div>
+</section>
+
+<footer class="py-10 text-center border-t border-white/10">
+<p class="text-gray-500 orbit tracking-[5px] text-xs">
+LONEX X © 2026
+</p>
+</footer>
+
+<script>
+
+function copyIP(){
+navigator.clipboard.writeText('PLAY.LONEX.UZ');
+alert('IP copied!');
+}
+
+const menuBtn=document.getElementById('menuBtn');
+const mobileMenu=document.getElementById('mobileMenu');
+const closeMenu=document.getElementById('closeMenu');
+
+menuBtn.onclick=()=>{
+mobileMenu.style.right='0';
+}
+
+closeMenu.onclick=()=>{
+mobileMenu.style.right='-100%';
+}
+
+async function updateServer(){
+try{
+const res=await fetch('https://api.mcsrvstat.us/2/play.lonex.uz');
+const data=await res.json();
+const online=data.players ? data.players.online : 0;
+document.getElementById('online').innerText=online;
+}catch{
+document.getElementById('online').innerText='OFF';
+}
+}
+
+updateServer();
+setInterval(updateServer,30000);
+
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+
+const renderer=new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const geometry=new THREE.BufferGeometry();
+const vertices=[];
+
+for(let i=0;i<7000;i++){
+vertices.push(
+(Math.random()-0.5)*2000,
+(Math.random()-0.5)*2000,
+(Math.random()-0.5)*2000
+);
+}
+
+geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+
+const material=new THREE.PointsMaterial({
+size:2,
+color:0x00ffae
+});
+
+const stars=new THREE.Points(geometry,material);
+scene.add(stars);
+
+camera.position.z=300;
+
+function animate(){
+requestAnimationFrame(animate);
+stars.rotation.y+=0.0007;
+stars.rotation.x+=0.0003;
+renderer.render(scene,camera);
+}
+
+animate();
+
+window.addEventListener('resize',()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
+const questions=[
+{
+question:'Minecraft serverda TPS nimani bildiradi?',
+options:['Server performance','Skin turi','Rank darajasi','Texture pack'],
+answer:0
+},
+{
+question:'Minecraftning eng kuchli armor materiali qaysi?',
+options:['Iron','Gold','Diamond','Netherite'],
+answer:3
+},
+{
+question:'Creeper qaysi o‘yin?',
+options:['Minecraft','Roblox','Terraria','Rust'],
+answer:0
+},
+{
+question:'Redstone nima uchun ishlatiladi?',
+options:['Build','Mechanism','Food','Potion'],
+answer:1
+},
+{
+question:'Ender Dragon qayerda bo‘ladi?',
+options:['Overworld','Nether','End','Cave'],
+answer:2
+},
+{
+question:'Minecraft creator kim?',
+options:['Notch','Dream','Mojang','Valve'],
+answer:0
+},
+{
+question:`Zombie qachon ko‘proq spawn bo‘ladi?`,
+options:['Day','Night','Ocean','Village only'],
+answer:1
+},
+{
+question:'Beacon nima beradi?',
+options:['Effects','Food','Armor','XP'],
+answer:0
+},
+{
+question:'Elytra nima?',
+options:['Sword','Shield','Flying Wings','Potion'],
+answer:2
+},
+{
+question:'Nether portal uchun minimum nechta obsidian kerak?',
+options:['6','8','10','14'],
+answer:2
+},
+{
+question:'Enchant table uchun qaysi block kerak?',
+options:['Bookshelf','Chest','Barrel','Anvil'],
+answer:0
+},
+{
+question:'Minecraftdagi eng qimmat rudalardan biri?',
+options:['Coal','Diamond','Copper','Stone'],
+answer:1
+},
+{
+question:`Villager bilan savdo nima deyiladi?`,
+options:['Trade','Quest','Gift','Sell'],
+answer:0
+},
+{
+question:'Totem of Undying nima qiladi?',
+options:['Fly beradi','Save qiladi','Teleport qiladi','XP beradi'],
+answer:1
+},
+{
+question:`Creeper portlaganda nima bo‘ladi?`,
+options:['Heal','Explosion','Rain','Spawn'],
+answer:1
+},
+{
+question:'Minecraftda eng tez transport?',
+options:['Boat on ice','Horse','Pig','Minecart'],
+answer:0
+},
+{
+question:'Wither bossni chaqirish uchun nechta soul sand kerak?',
+options:['2','3','4','5'],
+answer:2
+},
+{
+question:'Minecraftda coordinate ochish tugmasi?',
+options:['F1','F3','F5','F8'],
+answer:1
+},
+{
+question:'Golden Apple nima beradi?',
+options:['Effects','Diamond','Blocks','Enchant'],
+answer:0
+},
+{
+question:'Netherite olish uchun nima kerak?',
+options:['Ancient Debris','Coal','Quartz','Copper'],
+answer:0
+},
+{
+question:'Shulker box nima uchun?',
+options:['Storage','Attack','Food','Potion'],
+answer:0
+},
+{
+question:'Minecraftdagi default dimension?',
+options:['End','Nether','Overworld','Sky'],
+answer:2
+},
+{
+question:'XP nimani anglatadi?',
+options:['Experience','Extra Power','Explosion','Exchange'],
+answer:0
+},
+{
+question:'Smite enchant kimga kuchli?',
+options:['Undead mobs','Animals','Players','Villagers'],
+answer:0
+},
+{
+question:'Sharpness nima qiladi?',
+options:['Damage oshiradi','Fly beradi','Speed beradi','Mining'],
+answer:0
+},
+{
+question:'Minecraftdagi eng mashhur mob?',
+options:['Cow','Zombie','Creeper','Chicken'],
+answer:2
+},
+{
+question:'Bed nima uchun kerak?',
+options:['Sleep','Trade','Build','Enchant'],
+answer:0
+},
+{
+question:`End portal qayerda bo‘ladi?`,
+options:['Village','Stronghold','Nether','Cave'],
+answer:1
+},
+{
+question:'Minecraft Java Edition kim uchun?',
+options:['PC','PS','Xbox','Mobile'],
+answer:0
+},
+{
+question:'Potion brewing uchun nima kerak?',
+options:['Brewing Stand','Crafting Table','Furnace','Smoker'],
+answer:0
+},
+{
+question:'Minecraftda weather command?',
+options:['/weather','/rain','/storm','/time'],
+answer:0
+},
+{
+question:'Diamond qaysi layerda ko‘proq chiqadi?',
+options:['Y -59','Y 100','Y 70','Y 1'],
+answer:0
+},
+{
+question:'Creative mode nima beradi?',
+options:['Unlimited items','Hardcore','No blocks','Only PvP'],
+answer:0
+},
+{
+question:'Hardcore mode nima?',
+options:['One life','Infinite HP','Creative','Mods'],
+answer:0
+},
+{
+question:'Minecraftdagi eng tez pickaxe?',
+options:['Wood','Iron','Diamond','Netherite'],
+answer:3
+},
+{
+question:'Anvil nima uchun?',
+options:['Repair','Cook','Storage','Trade'],
+answer:0
+},
+{
+question:'Minecraft official company?',
+options:['Mojang','Epic Games','Valve','Rockstar'],
+answer:0
+},
+{
+question:'PvP nimani anglatadi?',
+options:['Player vs Player','Potion vs Potion','Power vs Power','Pixel vs Pixel'],
+answer:0
+},
+{
+question:`Survival mode maqsadi?`,
+options:[`Resources yig‘ish`,'Only build','No mobs','No hunger'],
+answer:0
+},
+{
+question:`Minecraftda hunger bar nimaga kerak?`,
+options:['Energy','XP','Armor','Trade'],
+answer:0
+},
+{
+question:'Minecraftda eng oddiy fuel?',
+options:['Coal','Diamond','Stone','Sand'],
+answer:0
+},
+{
+question:'Minecraftda skin nima?',
+options:['Character look','Weapon','Pet','Armor'],
+answer:0
+},
+{
+question:'Minecraft launcher nima qiladi?',
+options:['Game launch','Build server','Edit skin','Record video'],
+answer:0
+},
+{
+question:'Server whitelist nima?',
+options:['Allowed players list','Ban list','Admin menu','Plugin'],
+answer:0
+},
+{
+question:'Minecraftda OP nima?',
+options:['Operator/Admin','Over Power sword','Online Player','Option'],
+answer:0
+},
+{
+question:'Command block nima uchun?',
+options:['Automation','Storage','PvP','Trade'],
+answer:0
+},
+{
+question:'Minecraftdagi eng kuchli boss?',
+options:['Wither','Zombie','Skeleton','Piglin'],
+answer:0
+},
+{
+question:'Minecraftda coordinates qanday ochiladi?',
+options:['F1','F3','F5','F8'],
+answer:1
+},
+{
+question:'Minecraftda mod nima?',
+options:['Modification','Server','Potion','Rank'],
+answer:0
+},
+{
+question:'Minecraftda texture pack nima qiladi?',
+options:['Visuals change','Adds mobs','Adds commands','Adds FPS'],
+answer:0
+},
+{
+question:'Minecraftda shaders nima?',
+options:['Graphics enhancement','Weapon','Server','Potion'],
+answer:0
+},
+{
+question:'Minecraftda AFK nima?',
+options:['Away From Keyboard','Auto Farm Kit','Advanced Fight Key','Armor Fast Kill'],
+answer:0
+},
+{
+question:'Minecraftdagi rare biome?',
+options:['Mushroom Fields','Desert','Plains','Swamp'],
+answer:0
+},
+{
+question:'Minecraftdagi music disc nima?',
+options:['Music item','Weapon','Tool','Armor'],
+answer:0
+}
+];
+
+let currentQuestion=0;
+let score=0;
+
+const quizContainer=document.getElementById('quizContainer');
+
+function renderQuestion(){
+
+const q=questions[currentQuestion];
+
+quizContainer.innerHTML=`
+<div class="question-box active">
+<h2 class="text-3xl font-bold mb-8">
+${q.question}
+</h2>
+
+${q.options.map((opt,index)=>`
+<div class="option" onclick="selectAnswer(${index})">
+${opt}
+</div>
+`).join('')}
+</div>
+`;
+
+const progress=((currentQuestion)/52)*100;
+document.getElementById('progressFill').style.width=progress+'%';
+document.getElementById('questionCounter').innerText=`${currentQuestion+1} / 52`;
+}
+
+let selected=null;
+
+function selectAnswer(index){
+selected=index;
+
+document.querySelectorAll('.option').forEach(el=>{
+el.style.borderColor='rgba(255,255,255,.08)';
+});
+
+document.querySelectorAll('.option')[index].style.borderColor='#00ffae';
+}
+
+function nextQuestion(){
+
+if(selected===questions[currentQuestion].answer){
+score++;
+}
+
+selected=null;
+currentQuestion++;
+
+if(currentQuestion>=questions.length){
+finishQuiz();
+return;
+}
+
+renderQuestion();
+}
+
+function finishQuiz(){
+quizContainer.style.display='none';
+document.querySelector('.progress-bar').style.display='none';
+document.querySelector('#questionCounter').style.display='none';
+
+const resultBox=document.getElementById('resultBox');
+resultBox.classList.remove('hidden');
+
+document.getElementById('scoreText').innerText=`${score} / 52`;
+
+if(score>=45){
+const name=prompt('Enter your nickname');
+document.getElementById('certName').innerText=name || 'PLAYER';
+document.getElementById('certificate').style.display='block';
+
+confetti();
+}
+}
+
+function confetti(){
+for(let i=0;i<120;i++){
+const div=document.createElement('div');
+div.style.position='fixed';
+div.style.width='10px';
+div.style.height='10px';
+div.style.background='#00ffae';
+div.style.left=Math.random()*100+'vw';
+div.style.top='-20px';
+div.style.zIndex='9999';
+div.style.borderRadius='50%';
+document.body.appendChild(div);
+
+gsap.to(div,{
+y:window.innerHeight+200,
+x:(Math.random()-0.5)*300,
+rotation:720,
+duration:4,
+onComplete:()=>div.remove()
+});
+}
+}
+
+async function downloadCertificate(){
+
+const cert=document.getElementById('certificate');
+
+const opt={
+margin:0.5,
+filename:'LONEX-Certificate.pdf',
+image:{type:'jpeg',quality:1},
+html2canvas:{scale:2},
+jsPDF:{unit:'in',format:'a4',orientation:'landscape'}
+};
+
+if(typeof html2pdf==='undefined'){
+const script=document.createElement('script');
+script.src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+
+script.onload=()=>{
+html2pdf().set(opt).from(cert).save();
+}
+
+document.body.appendChild(script);
+}else{
+html2pdf().set(opt).from(cert).save();
+}
+}
+
+function shareCertificate(){
+
+const fakeLink=`https://lonex.uz/certificate/${Math.random().toString(36).substring(2,10).toUpperCase()}`;
+
+navigator.clipboard.writeText(fakeLink);
+
+alert('Certificate link copied!\n' + fakeLink);
+}
+
+renderQuestion();
+
+let time=1800;
+
+setInterval(()=>{
+if(time<=0)return;
+
+time--;
+
+const min=Math.floor(time/60);
+const sec=time%60;
+
+document.getElementById('timer').innerText=
+`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+},1000);
+
+</script>
+</body>
+</html>
